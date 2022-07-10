@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
   },
   pagination: {
     '& .MuiPaginationItem-root': {
-      color: 'gold',
+      color: '#fafafa',
     },
   },
   secSection: {
