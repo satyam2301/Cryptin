@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, makeStyles } from '@material-ui/core';
+import { Card, CardContent, makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
 import { TrendingCoins } from '../config/api';
 import { CryptoState } from '../CryptoContext';
@@ -7,20 +7,33 @@ import AliceCarousel from 'react-alice-carousel';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
-  carousel: {
-    height: '100%',
+  carousel_page: {
+    position: 'relative',
+    height: '100vh',
     width: '100%',
     display: 'flex',
-    flexDirection: 'row',
-    // backgroundImage: 'url(./undraw_crypto_portfolio_2jy5.png)',
+    // justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'column',
+    backgroundColor: '#080607',
+    color: '#fafafa',
+  },
+  carousel: {
+    height: '40%',
+    width: '80%',
+    display: 'flex',
+    marginTop: 30,
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+    zIndex: '10',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
       // height: '150px',
     },
   },
   card: {
-    width: '60%',
+    width: '50%',
     [theme.breakpoints.down('sm')]: {
       width: '80%',
       height: '150px',
@@ -32,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     backdropFilter: 'blur( 5px )',
     webkitBackdropFilter: 'blur( 5px )',
     borderRadius: '20px',
+
     border: '1px solid rgba( 255, 255, 255, 0.18 )',
   },
   carouselItem: {
@@ -41,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     textTransform: 'uppercase',
     color: 'white',
+
     textDecoration: 'none',
   },
   img: {
@@ -49,6 +64,28 @@ const useStyles = makeStyles((theme) => ({
       height: 50,
     },
     marginBottom: 20,
+  },
+  blur: {
+    background: '#ca82ff',
+    position: 'absolute',
+    borderRadius: '50%',
+    filter: 'blur(212px)',
+    zIndex: '5',
+    width: '20rem',
+    height: '20rem',
+    top: '10%',
+    right: '30%',
+  },
+  blur_blur: {
+    background: '#3715A7',
+    position: 'absolute',
+    borderRadius: '50%',
+    filter: 'blur(212px)',
+    zIndex: '5',
+    width: '20rem',
+    height: '20rem',
+    top: '40%',
+    right: '10%',
   },
 }));
 
@@ -68,7 +105,7 @@ const Carousel = () => {
 
     setTrending(data);
   };
-  // console.log(trending);
+  console.log(trending);
 
   useEffect(() => {
     fetchTrendingCoins();
@@ -107,23 +144,39 @@ const Carousel = () => {
 
   const responsive = {
     0: { items: 2 },
-    568: { items: 2 },
+    568: { items: 3 },
   };
 
   return (
-    <div className={classes.carousel}>
-      {/* <img src={back} alt={'background view'} className={classes.images} /> */}
-      <AliceCarousel
-        mouseTracking
-        infinite
-        autoPlayInterval={1000}
-        animationDuration={1500}
-        disableDotsControls
-        disableButtonsControls
-        responsive={responsive}
-        autoPlay
-        items={items}
-      />
+    <div className={classes.carousel_page}>
+      <div className={classes.blur}></div>
+      <div className={classes.blur_blur}></div>
+
+      <Typography
+        variant="h4"
+        style={{
+          fontFamily: 'Montserrat',
+          marginBottom: 50,
+          marginTop: 50,
+          zIndex: '10',
+        }}
+      >
+        Top 10 Trending Coin
+      </Typography>
+
+      <div className={classes.carousel}>
+        <AliceCarousel
+          mouseTracking
+          infinite
+          autoPlayInterval={1000}
+          animationDuration={1500}
+          disableDotsControls
+          disableButtonsControls
+          responsive={responsive}
+          autoPlay
+          items={items}
+        />
+      </div>
     </div>
   );
 };

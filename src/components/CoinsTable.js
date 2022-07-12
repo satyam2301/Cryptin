@@ -99,10 +99,11 @@ const CoinsTable = () => {
             color="secondary"
             label="Search Any CryptoCurrency"
             style={{
-              marginBottom: 20,
+              marginBottom: 30,
               width: '80%',
               color: 'white',
               borderRadius: '10px',
+              marginTop: '50px',
             }}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -212,7 +213,7 @@ const CoinsTable = () => {
           </TableContainer>
           <Pagination
             style={{
-              padding: 20,
+              padding: 30,
               width: '100%',
               display: 'flex',
               justifyContent: 'center',
