@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
   imgcontainer: {
     // display: 'flex',
     width: '40%',
+    [theme.breakpoints.down('md')]: {
+      width: '0%',
+    },
     [theme.breakpoints.down('sm')]: {
       width: '100%',
     },

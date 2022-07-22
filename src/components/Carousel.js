@@ -9,8 +9,11 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   carousel_page: {
     position: 'relative',
-    height: '100vh',
+    height: '70vh',
     width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      height: '50vh',
+    },
     display: 'flex',
     // justifyContent: 'center',
     alignItems: 'center',
@@ -71,10 +74,14 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '50%',
     filter: 'blur(212px)',
     zIndex: '5',
-    width: '20rem',
-    height: '20rem',
+    width: '15rem',
+    height: '15rem',
     top: '10%',
     right: '30%',
+    [theme.breakpoints.down('sm')]: {
+      width: '10rem',
+      height: '10rem',
+    },
   },
   blur_blur: {
     background: '#3715A7',
@@ -82,10 +89,14 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '50%',
     filter: 'blur(212px)',
     zIndex: '5',
-    width: '20rem',
-    height: '20rem',
+    width: '15rem',
+    height: '15rem',
     top: '40%',
     right: '10%',
+    [theme.breakpoints.down('sm')]: {
+      width: '10rem',
+      height: '10rem',
+    },
   },
 }));
 

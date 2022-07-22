@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom';
 import { CryptoState } from '../CryptoContext';
 import { Pagination } from '@material-ui/lab';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   row: {
     backgroundColor: '#16171a',
     cursor: 'pointer',
@@ -37,6 +37,12 @@ const useStyles = makeStyles(() => ({
   secSection: {
     backgroundColor: '#080607',
     color: '#fafafa',
+  },
+  containerTable: {
+    width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      width: '90%',
+    },
   },
 }));
 
@@ -89,12 +95,20 @@ const CoinsTable = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <div className={classes.secSection}>
-        <Container style={{ textAlign: 'center' }}>
+        <Container
+          style={{
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Typography variant="h4" style={{ fontFamily: 'Montserrat' }}>
             CryptoCurrency Prices by Market Cap
           </Typography>
           <TextField
-            id="outlined-secondary"
+            id="outlined-basic"
             variant="outlined"
             color="secondary"
             label="Search Any CryptoCurrency"
@@ -107,11 +121,7 @@ const CoinsTable = () => {
             }}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <TableContainer
-            style={{
-              background: 'linear-gradient(to right, #757f9a, #d7dde8)',
-            }}
-          >
+          <TableContainer className={classes.containerTable}>
             {loading ? (
               <LinearProgress style={{ backgroundColor: '#9A6AFF' }} />
             ) : (
@@ -213,7 +223,8 @@ const CoinsTable = () => {
           </TableContainer>
           <Pagination
             style={{
-              padding: 30,
+              paddingTop: 30,
+              paddingBottom: 30,
               width: '100%',
               display: 'flex',
               justifyContent: 'center',
@@ -224,7 +235,7 @@ const CoinsTable = () => {
             count={(handleSearch().length / 10).toFixed(0)}
             onChange={(_, value) => {
               setPage(value);
-              window.scroll(0, 450);
+              window.scroll(0, 1350);
             }}
           />
         </Container>
